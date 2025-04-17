@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthInsure | Medical Cost Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span class="text-xl font-semibold">Predictmedix</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="/about" class="hover:text-blue-200 transition-colors">About</a>
+                    <a href="/contact" class="hover:text-blue-200 transition-colors">Contact</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white hover:text-blue-200 transition-all duration-300 transform hover:scale-110 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50">
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 opacity-0" id="menu-backdrop"></div>
+        <div class="fixed inset-y-0 right-0 w-64 bg-gradient-to-b from-blue-600 to-blue-800 shadow-xl transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center justify-between p-4 border-b border-blue-500">
+                <span class="text-xl font-semibold text-white">Menu</span>
+                <button id="menu-close" class="text-blue-200 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-4">
+                    <li><a href="/" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Home</a></li>
+                    <li><a href="/about" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">About</a></li>
+                    <li><a href="/contact" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBackdrop = document.getElementById('menu-backdrop');
+        const menuPanel = mobileMenu.querySelector('div:last-child');
+
+        function openMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                menuBackdrop.classList.remove('opacity-0');
+                menuPanel.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeMenu() {
+            menuBackdrop.classList.add('opacity-0');
+            menuPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuBackdrop.addEventListener('click', closeMenu);
+    </script>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Predict Your Medical Insurance Costs</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Our advanced ML model helps you estimate your healthcare expenses based on key health factors.</p>
+            <a href="#predictor" class="bg-white text-teal-600 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition duration-300">Try Predictor</a>
+        </div>
+    </div>
+
+    <!-- Prediction Form -->
+    <div id="predictor" class="container mx-auto px-6 py-12">
+        <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Insurance Cost Predictor</h2>
+                
+                <form action="/predict" method="post" class="space-y-6">
+                    <!-- Form fields will be inserted here maintaining same functionality -->
+                    <div class="space-y-6">
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                            <input type="number" id="age" name="age" required min="18" max="100" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                        </div>
+                        
+                        <div>
+                            <label for="sex" class="block text-sm font-medium text-gray-700 mb-1">Sex</label>
+                            <select id="sex" name="sex" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                                <option value="" selected disabled>Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Other form fields with similar structure -->
+                        <div>
+                            <label for="bmi" class="block text-sm font-medium text-gray-700 mb-1">BMI</label>
+                            <input type="number" id="bmi" name="bmi" required step="0.1" min="10" max="50"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                        </div>
+                        
+                        <div>
+                            <label for="children" class="block text-sm font-medium text-gray-700 mb-1">Number of Children</label>
+                            <input type="number" id="children" name="children" required min="0" max="10"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                        </div>
+                        
+                        <div>
+                            <label for="smoker" class="block text-sm font-medium text-gray-700 mb-1">Smoker</label>
+                            <select id="smoker" name="smoker" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                                <option value="" selected disabled>Are you a Smoker?</option>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="region" class="block text-sm font-medium text-gray-700 mb-1">Region</label>
+                            <select id="region" name="region" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                                <option value="" selected disabled>Select region</option>
+                                <option value="northeast">Northeast</option>
+                                <option value="southeast">Southeast</option>
+                                <option value="southwest">Southwest</option>
+                                <option value="northwest">Northwest</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-blue-700 text-white py-3 px-4 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300">
+                        Predict Insurance Cost
+                    </button>
+                </form>
+                
+                {% if prediction_text %}
+                <div class="mt-8 space-y-4">
+                    <h3 class="text-lg font-medium text-gray-900">Submitted Data</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Age</p>
+                                <p class="font-medium">{{ request.form.age }}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Sex</p>
+                                <p class="font-medium">{{ request.form.sex }}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">BMI</p>
+                                <p class="font-medium">{{ request.form.bmi }}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Children</p>
+                                <p class="font-medium">{{ request.form.children }}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Smoker</p>
+                                <p class="font-medium">{{ request.form.smoker }}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Region</p>
+                                <p class="font-medium">{{ request.form.region }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                        <h3 class="text-lg font-medium text-blue-800 mb-2">Prediction Result</h3>
+                        <p class="text-blue-600">{{ prediction_text }}</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Predictmedix</h3>
+                    <p class="text-gray-400">A college project demonstrating healthcare cost prediction using machine learning.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white">About</a></li>
+                       
+                        <li><a href="/contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Health Tips</h3>
+                    <p class="text-gray-400">Regular exercise and a balanced diet can significantly reduce your healthcare costs over time.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2025 Predictmedix. Computer Science Department. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

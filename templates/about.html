@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Predictmedix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span class="text-xl font-bold">Predictmedix</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="/about" class="font-medium hover:text-blue-200 transition-colors">About</a>
+                    <a href="/contact" class="hover:text-blue-200 transition-colors">Contact</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white hover:text-blue-200 transition-all duration-300 transform hover:scale-110 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50">
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 opacity-0" id="menu-backdrop"></div>
+        <div class="fixed inset-y-0 right-0 w-64 bg-gradient-to-b from-blue-600 to-blue-800 shadow-xl transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center justify-between p-4 border-b border-blue-500">
+                <span class="text-xl font-semibold text-white">Menu</span>
+                <button id="menu-close" class="text-blue-200 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-4">
+                    <li><a href="/" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Home</a></li>
+                    <li><a href="/about" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">About</a></li>
+                    <li><a href="/contact" class="block px-4 py-2 text-blue-100 hover:bg-blue-700 hover:text-white rounded transition-all duration-300 transform hover:scale-105 hover:shadow-md hover:translate-x-2">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBackdrop = document.getElementById('menu-backdrop');
+        const menuPanel = mobileMenu.querySelector('div:last-child');
+
+        function openMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                menuBackdrop.classList.remove('opacity-0');
+                menuPanel.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeMenu() {
+            menuBackdrop.classList.add('opacity-0');
+            menuPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuBackdrop.addEventListener('click', closeMenu);
+    </script>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-16">
+        <!-- Technologies Section -->
+        <div class="mb-20 animate-fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Technologies We Use</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="tech-card">
+                    <div class="p-6">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="w-14 h-14 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">Python & Flask</h3>
+                        <p class="text-gray-600 text-center">Backend powered by Python with Flask framework</p>
+                    </div>
+                    <div class="tech-details">
+                        <h3 class="text-xl font-bold mb-3 text-center">Implementation Details</h3>
+                        <p class="text-sm">We built a RESTful API using Flask to handle prediction requests. The backend processes input data and returns predictions from our trained ML models.</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="p-6">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="w-14 h-14 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">Machine Learning</h3>
+                        <p class="text-gray-600 text-center">Advanced regression models for predictions</p>
+                    </div>
+                    <div class="tech-details">
+                        <h3 class="text-xl font-bold mb-3 text-center">Implementation Details</h3>
+                        <p class="text-sm">We used Scikit-learn to train regression models on medical insurance data. Features include age, BMI, smoking status, and region to predict costs.</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="p-6">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="w-14 h-14 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">Tailwind CSS</h3>
+                        <p class="text-gray-600 text-center">Modern CSS framework for responsive design</p>
+                    </div>
+                    <div class="tech-details">
+                        <h3 class="text-xl font-bold mb-3 text-center">Implementation Details</h3>
+                        <p class="text-sm">We used Tailwind's utility classes to quickly build a responsive interface. Custom animations and transitions were added for better user experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Coordinator Section -->
+        <div class="max-w-4xl mx-auto mb-20 animate-fade-in">
+            <div class="coordinator-card">
+                <div class="p-8">
+                    <h2 class="text-4xl font-bold text-center mb-10 section-title">Project Guide</h2>
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="w-48 h-48 mb-8 md:mb-0 md:mr-10 rounded-full overflow-hidden profile-image">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Project Guide" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-2xl font-bold mb-2">Prof. Robert Williams</h3>
+                            <p class="text-blue-600 font-medium mb-4">Computer Science Department</p>
+                            <p class="text-gray-600 mb-4">With extensive experience in healthcare technology projects, Prof. Williams guided our team through the development of Predictmedix.</p>
+                            <p class="text-gray-600 italic">"This student project demonstrates excellent application of machine learning concepts to solve real-world healthcare challenges."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="mb-20 animate-fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Our Team</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQG48g5l0_eSfw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1694769849908?e=1749686400&v=beta&t=bhz-NInpKIuisHIdlB1EQ0k0wLuUImsgaT9GEVLDG3k" 
+                             alt="Tushar Saxena" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Tushar Saxena</h3>
+                                <p class="text-blue-600 font-medium mb-3">Full Stack Developer</p>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Developed Frontend UI and integration with backend using Python and web technologies.</p>
+                    </div>
+                </div>
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="/static/Pictures/sarveshPic.jpeg" 
+                             alt="Sarvesh Mishra" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Sarvesh Mishra</h3>
+                                <p class="text-blue-600 font-medium mb-3">Full Stack Developer</p>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Built web application and API endpoints with expertise in Flask and JavaScript.</p>
+                    </div>
+                </div>
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="/static/Pictures/SurajPic.jpeg" 
+                             alt="Suraj Maurya" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Suraj Maurya</h3>
+                                <p class="text-blue-600 font-medium mb-3">UI/UX Designer</p>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Designed intuitive interfaces and user flows with a focus on accessibility and user experience.</p>
+                    </div>
+                </div>
+                <div class="team-member-card">
+                    <div class="team-member-image overflow-hidden">
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQEjrJ1KcSZpRQ/profile-displayphoto-shrink_800_800/B56ZVqdLboGQAc-/0/1741247789260?e=1749686400&v=beta&t=FmiSiIgJEGncCRlPLtkDGdpMxDvmMWGpuILN8ZRcydg" 
+                             alt="Atul Kumar" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Atul Kumar</h3>
+                                <p class="text-blue-600 font-medium mb-3">Machine Learning Engineer</span>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 text-sm">Design and made algorithm for machine learning project </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Predictmedix</h3>
+                    <p class="text-gray-400">A college project demonstrating healthcare cost prediction using machine learning.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                  
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Health Tips</h3>
+                    <p class="text-gray-400">Regular exercise and a balanced diet can significantly reduce your healthcare costs over time.</p>
+                </div>
+                
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2025 Predictmedix. Computer Science Department. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
